@@ -514,7 +514,7 @@ export default function Home() {
                     top: '50%',
                     right: '-1rem',
                     transform: 'translateY(-50%)',
-                    display: { sm: 'block', lg: 'block' }
+                    display: 'none'
                   }}>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="rgba(99,102,241,0.5)" width="24" height="24">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"></path>
