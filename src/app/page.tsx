@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
-import { siteConfig, navLinks, services, audiences, advantages, processSteps, trustStats } from "@/data/site";
+import { siteConfig, navLinks, services, audiences, advantages, processSteps, trustStats, footerLinks } from "@/data/site";
 
 export const metadata = {
   title: `${siteConfig.name} | ${siteConfig.tagline}`,
