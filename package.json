@@ -1,19 +1,20 @@
 {
-  "name": "laven-ventures",
+  "name": "lavien-ventures",
   "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint ."
+  },
+  "engines": {
+    "node": ">=20.9"
   },
   "dependencies": {
-    "@heroicons/react": "^2.2.0",
     "next": "16.1.6",
     "react": "19.2.3",
-    "react-dom": "19.2.3",
-    "framer-motion": "^11.0.0"
+    "react-dom": "19.2.3"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
@@ -22,7 +23,6 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
-    "postcss": "^8",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
