@@ -1,18 +1,27 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { siteConfig, navLinks } from "@/data/site";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <nav className="fixed w-full z-50 transition-all duration-300 bg-background/90 backdrop-blur-lg border-b border-white/10">
+    <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'nav-scrolled' : 'nav-transparent'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link href="/" className="text-2xl font-bold bg-gradient-to-r from-accent-primary to-accent-secondary bg-clip-text text-transparent">
+          <Link href="/" className="text-2xl font-bold hero-gradient-text">
             {siteConfig.name}
           </Link>
 
@@ -22,14 +31,14 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-gray-300 hover:text-white transition-colors duration-200 font-medium"
+                className="text-ink hover:text-accent transition-colors duration-200 font-medium"
               >
                 {link.label}
               </Link>
             ))}
             <Link
               href="/start-project"
-              className="px-6 py-2 rounded-full font-semibold bg-gradient-to-r from-accent-primary to-accent-secondary text-white transition-all duration-300 hover:scale-105 shadow-lg shadow-accent-primary/30"
+              className="btn-primary whitespace-nowrap"
             >
               Start Your Project
             </Link>
@@ -38,7 +47,7 @@ export default function Navbar() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 rounded-md text-gray-300 hover:text-white hover:bg-white/10 transition-colors"
+            className="md:hidden p-2 rounded-md text-ink hover:bg-muted/10 transition-colors"
             aria-label="Toggle menu"
           >
             {isOpen ? (
@@ -56,13 +65,13 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden bg-background border-t border-white/10">
+        <div className="md:hidden bg-surface border-t border-border">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/10 transition-colors"
+                className="block px-3 py-2 rounded-md text-base font-medium text-ink hover:bg-muted/10 transition-colors"
                 onClick={() => setIsOpen(false)}
               >
                 {link.label}
@@ -70,7 +79,7 @@ export default function Navbar() {
             ))}
             <Link
               href="/start-project"
-              className="block w-full mt-4 px-4 py-2 rounded-full font-semibold bg-gradient-to-r from-accent-primary to-accent-secondary text-white text-center transition-all duration-300 hover:scale-105"
+              className="block w-full mt-4 btn-primary text-center"
               onClick={() => setIsOpen(false)}
             >
               Start Your Project

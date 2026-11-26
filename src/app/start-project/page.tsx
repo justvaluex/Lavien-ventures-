@@ -63,22 +63,22 @@ export default function StartProject() {
   };
 
   return (
-    <main className="min-h-screen bg-background text-foreground font-sans">
+    <main className="min-h-screen bg-bg text-ink font-sans">
       <Navbar />
       
       <div className="pt-24 pb-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
         <div className="text-center mb-12">
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
-            Start Your <span className="bg-gradient-to-r from-accent-primary to-accent-secondary bg-clip-text text-transparent">Project</span>
+            Start Your <span className="bg-gradient-to-r hero-gradient-text">Project</span>
           </h1>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+          <p className="text-xl text-muted max-w-2xl mx-auto">
             Tell us about your vision. We&apos;ll help you bring it to life.
           </p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Personal Information */}
-          <div className="p-6 rounded-xl bg-white/5 border border-white/10">
+          <div className="p-6 rounded-xl bg-surface border-border">
             <h2 className="text-xl font-semibold mb-4">Personal Information</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <input
@@ -86,7 +86,7 @@ export default function StartProject() {
                 placeholder="Name *"
                 value={formData.name}
                 onChange={(e) => setFormData({...formData, name: e.target.value})}
-                className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-accent-primary focus:outline-none transition-colors"
+                className="w-full px-4 py-3 rounded-lg bg-surface border-border text-white placeholder-gray-500 focus:border-accent-primary focus:outline-none transition-colors"
                 required
               />
               <input
@@ -94,14 +94,14 @@ export default function StartProject() {
                 placeholder="Company"
                 value={formData.company}
                 onChange={(e) => setFormData({...formData, company: e.target.value})}
-                className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-accent-primary focus:outline-none transition-colors"
+                className="w-full px-4 py-3 rounded-lg bg-surface border-border text-white placeholder-gray-500 focus:border-accent-primary focus:outline-none transition-colors"
               />
               <input
                 type="email"
                 placeholder="Email *"
                 value={formData.email}
                 onChange={(e) => setFormData({...formData, email: e.target.value})}
-                className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-accent-primary focus:outline-none transition-colors"
+                className="w-full px-4 py-3 rounded-lg bg-surface border-border text-white placeholder-gray-500 focus:border-accent-primary focus:outline-none transition-colors"
                 required
               />
               <input
@@ -109,26 +109,26 @@ export default function StartProject() {
                 placeholder="Phone"
                 value={formData.phone}
                 onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-accent-primary focus:outline-none transition-colors"
+                className="w-full px-4 py-3 rounded-lg bg-surface border-border text-white placeholder-gray-500 focus:border-accent-primary focus:outline-none transition-colors"
               />
               <input
                 type="url"
                 placeholder="Website"
                 value={formData.website}
                 onChange={(e) => setFormData({...formData, website: e.target.value})}
-                className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-accent-primary focus:outline-none transition-colors"
+                className="w-full px-4 py-3 rounded-lg bg-surface border-border text-white placeholder-gray-500 focus:border-accent-primary focus:outline-none transition-colors"
               />
             </div>
           </div>
 
           {/* Project Details */}
-          <div className="p-6 rounded-xl bg-white/5 border border-white/10">
+          <div className="p-6 rounded-xl bg-surface border-border">
             <h2 className="text-xl font-semibold mb-4">Project Details</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <select
                 value={formData.projectType}
                 onChange={(e) => setFormData({...formData, projectType: e.target.value})}
-                className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white focus:border-accent-primary focus:outline-none transition-colors appearance-none"
+                className="w-full px-4 py-3 rounded-lg bg-surface border-border text-white focus:border-accent-primary focus:outline-none transition-colors appearance-none"
                 required
               >
                 <option value="">Select Project Type *</option>
@@ -140,7 +140,7 @@ export default function StartProject() {
               <select
                 value={formData.budget}
                 onChange={(e) => setFormData({...formData, budget: e.target.value})}
-                className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white focus:border-accent-primary focus:outline-none transition-colors appearance-none"
+                className="w-full px-4 py-3 rounded-lg bg-surface border-border text-white focus:border-accent-primary focus:outline-none transition-colors appearance-none"
                 required
               >
                 <option value="">Select Budget Range *</option>
@@ -152,7 +152,7 @@ export default function StartProject() {
               <select
                 value={formData.timeline}
                 onChange={(e) => setFormData({...formData, timeline: e.target.value})}
-                className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white focus:border-accent-primary focus:outline-none transition-colors appearance-none"
+                className="w-full px-4 py-3 rounded-lg bg-surface border-border text-white focus:border-accent-primary focus:outline-none transition-colors appearance-none"
                 required
               >
                 <option value="">Select Timeline *</option>
@@ -167,7 +167,7 @@ export default function StartProject() {
               placeholder="Business Description *"
               value={formData.description}
               onChange={(e) => setFormData({...formData, description: e.target.value})}
-              className="w-full mt-4 px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-accent-primary focus:outline-none transition-colors resize-none"
+              className="w-full mt-4 px-4 py-3 rounded-lg bg-surface border-border text-white placeholder-gray-500 focus:border-accent-primary focus:outline-none transition-colors resize-none"
               required
             ></textarea>
 
@@ -176,7 +176,7 @@ export default function StartProject() {
               placeholder="Current Challenge"
               value={formData.problem}
               onChange={(e) => setFormData({...formData, problem: e.target.value})}
-              className="w-full mt-4 px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-accent-primary focus:outline-none transition-colors resize-none"
+              className="w-full mt-4 px-4 py-3 rounded-lg bg-surface border-border text-white placeholder-gray-500 focus:border-accent-primary focus:outline-none transition-colors resize-none"
             ></textarea>
 
             <textarea
@@ -184,7 +184,7 @@ export default function StartProject() {
               placeholder="Desired Outcome"
               value={formData.outcome}
               onChange={(e) => setFormData({...formData, outcome: e.target.value})}
-              className="w-full mt-4 px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-accent-primary focus:outline-none transition-colors resize-none"
+              className="w-full mt-4 px-4 py-3 rounded-lg bg-surface border-border text-white placeholder-gray-500 focus:border-accent-primary focus:outline-none transition-colors resize-none"
             ></textarea>
 
             <textarea
@@ -192,7 +192,7 @@ export default function StartProject() {
               placeholder="Existing Technology"
               value={formData.technology}
               onChange={(e) => setFormData({...formData, technology: e.target.value})}
-              className="w-full mt-4 px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-accent-primary focus:outline-none transition-colors resize-none"
+              className="w-full mt-4 px-4 py-3 rounded-lg bg-surface border-border text-white placeholder-gray-500 focus:border-accent-primary focus:outline-none transition-colors resize-none"
             ></textarea>
 
             <textarea
@@ -200,7 +200,7 @@ export default function StartProject() {
               placeholder="Additional Information"
               value={formData.additional}
               onChange={(e) => setFormData({...formData, additional: e.target.value})}
-              className="w-full mt-4 px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-accent-primary focus:outline-none transition-colors resize-none"
+              className="w-full mt-4 px-4 py-3 rounded-lg bg-surface border-border text-white placeholder-gray-500 focus:border-accent-primary focus:outline-none transition-colors resize-none"
             ></textarea>
           </div>
 

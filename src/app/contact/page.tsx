@@ -9,15 +9,15 @@ export const metadata = {
 
 export default function Contact() {
   return (
-    <main className="min-h-screen bg-background text-foreground font-sans">
+    <main className="min-h-screen bg-bg text-ink font-sans">
       <Navbar />
       
       <div className="pt-24 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
-            Get in <span className="bg-gradient-to-r from-accent-primary to-accent-secondary bg-clip-text text-transparent">Touch</span>
+            Get in <span className="bg-gradient-to-r hero-gradient-text">Touch</span>
           </h1>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+          <p className="text-xl text-muted max-w-3xl mx-auto">
             Have a question or ready to start a project? We&apos;d love to hear from you.
           </p>
         </div>
@@ -25,39 +25,39 @@ export default function Contact() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
           {/* Contact Info */}
           <div className="space-y-6">
-            <div className="p-6 rounded-xl bg-white/5 border border-white/10">
+            <div className="p-6 rounded-xl bg-surface border-border">
               <h3 className="text-lg font-semibold mb-2">Email</h3>
-              <a href="mailto:hello@lavenventures.com" className="text-accent-primary hover:text-accent-secondary transition-colors">
+              <a href="mailto:hello@lavenventures.com" className="text-accent hover:text-accent-secondary transition-colors">
                 hello@lavenventures.com
               </a>
             </div>
             
-            <div className="p-6 rounded-xl bg-white/5 border border-white/10">
+            <div className="p-6 rounded-xl bg-surface border-border">
               <h3 className="text-lg font-semibold mb-2">Location</h3>
-              <p className="text-gray-400">Remote Worldwide</p>
+              <p className="text-muted">Remote Worldwide</p>
             </div>
           </div>
 
           {/* Contact Form Placeholder */}
-          <div className="p-6 rounded-xl bg-white/5 border border-white/10">
+          <div className="p-6 rounded-xl bg-surface border-border">
             <h3 className="text-lg font-semibold mb-4">Send us a message</h3>
             <form className="space-y-4">
               <input
                 type="text"
                 placeholder="Your Name *"
-                className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-accent-primary focus:outline-none transition-colors"
+                className="w-full px-4 py-3 rounded-lg bg-surface border-border text-white placeholder-gray-500 focus:border-accent-primary focus:outline-none transition-colors"
                 required
               />
               <input
                 type="email"
                 placeholder="Your Email *"
-                className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-accent-primary focus:outline-none transition-colors"
+                className="w-full px-4 py-3 rounded-lg bg-surface border-border text-white placeholder-gray-500 focus:border-accent-primary focus:outline-none transition-colors"
                 required
               />
               <textarea
                 rows={4}
                 placeholder="Your Message *"
-                className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-accent-primary focus:outline-none transition-colors resize-none"
+                className="w-full px-4 py-3 rounded-lg bg-surface border-border text-white placeholder-gray-500 focus:border-accent-primary focus:outline-none transition-colors resize-none"
                 required
               ></textarea>
               <button
@@ -71,7 +71,7 @@ export default function Contact() {
         </div>
 
         <div className="mt-12 text-center">
-          <Link href="/start-project" className="inline-block px-8 py-3 rounded-full font-semibold border-2 border-accent-primary text-accent-primary hover:bg-accent-primary hover:text-white transition-all duration-300">
+          <Link href="/start-project" className="inline-block px-8 py-3 rounded-full font-semibold border-2 border-accent-primary text-accent hover:bg-accent-primary hover:text-white transition-all duration-300">
             Or Start a Project →
           </Link>
         </div>

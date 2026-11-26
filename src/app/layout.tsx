@@ -43,9 +43,27 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`}>
-      <body className={`antialiased font-sans bg-background text-foreground`}>
+    <html lang="en" className="" data-palette="a">
+      <body className={`antialiased font-sans bg-bg text-ink`}>
         {children}
+        
+        {/* Palette Switcher (DEV/PREVIEW ONLY) - Client Component */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if (process.env.NODE_ENV === 'development') {
+                const switcher = document.createElement('div');
+                switcher.className = 'palette-switcher';
+                switcher.innerHTML = \`
+                  <button onclick="document.documentElement.setAttribute('data-palette', 'a')">A. Bright Studio</button>
+                  <button onclick="document.documentElement.setAttribute('data-palette', 'b')">B. Fresh Growth</button>
+                  <button onclick="document.documentElement.setAttribute('data-palette', 'c')">C. Warm Sunrise</button>
+                \`;
+                document.body.appendChild(switcher);
+              }
+            `
+          }}
+        />
       </body>
     </html>
   );
