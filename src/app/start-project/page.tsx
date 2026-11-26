@@ -1,14 +1,9 @@
-"use client";
-
 import { useState } from "react";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import { siteConfig } from "@/data/site";
 
-export const metadata = {
-  title: "Start a Project | LAVIEN VENTURES",
-  description: "Tell us about your vision. We'll help you bring it to life.",
-};
+
 
 const projectTypes = [
   "Website",
