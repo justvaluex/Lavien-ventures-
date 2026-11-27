@@ -143,6 +143,23 @@ p, li, span {
   border-color: var(--color-accent);
 }
 
+/* Dark section cards - use white surface with ink text */
+.dark-section .card-light {
+  background-color: #FFFFFF;
+  color: var(--color-ink);
+}
+
+.dark-section .card-light h3,
+.dark-section .card-light h4,
+.dark-section .card-light h5 {
+  color: var(--color-ink) !important;
+}
+
+.dark-section .card-light p,
+.dark-section .card-light span {
+  color: rgba(0, 0, 0, 0.7) !important;
+}
+
 /* Primary buttons - solid accent */
 .btn-primary {
   background-color: var(--color-accent);
@@ -191,22 +208,23 @@ p, li, span {
 /* Dark section band */
 .dark-section {
   background-color: var(--color-dark-section);
-  color: white;
+  color: #FFFFFF;
 }
 
-.dark-section p, 
-.dark-section li, 
-.dark-section span {
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.dark-section h1, 
-.dark-section h2, 
-.dark-section h3, 
-.dark-section h4, 
-.dark-section h5, 
+.dark-section p,
+.dark-section li,
+.dark-section span,
+.dark-section h1,
+.dark-section h2,
+.dark-section h3,
+.dark-section h4,
+.dark-section h5,
 .dark-section h6 {
-  color: white;
+  color: #FFFFFF;
+}
+
+.dark-section .text-muted {
+  color: rgba(255, 255, 255, 0.85) !important;
 }
 
 /* Philosophy quote styling */
