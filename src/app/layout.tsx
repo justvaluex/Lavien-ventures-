@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 const inter = Inter({ 
   subsets: ["latin"], 
@@ -45,9 +47,11 @@ export default function RootLayout({
   return (
     <html lang="en" className="" data-palette="a">
       <body className={`antialiased font-sans bg-bg text-ink`}>
+        <Navbar />
         {children}
+        <Footer />
         
-        {/* Palette Switcher (DEV/PREVIEW ONLY) - Client Component */}
+        {/* Palette Switcher (DEV/PREVIEW ONLY) */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
