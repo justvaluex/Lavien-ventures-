@@ -486,6 +486,14 @@ export const siteConfig = {
   description: "Turn ideas into functioning businesses through technology, automation, branding, marketing, and strategic consulting.",
 };
 
+// Trust stats for homepage
+export const trustStats = [
+  { label: "Projects Launched", value: "50+" },
+  { label: "Clients Served", value: "100+" },
+  { label: "Revenue Generated", value: "$10M+" },
+  { label: "Team Members", value: "25+" },
+];
+
 // Footer links
 export const footerLinks = {
   services: [

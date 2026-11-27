@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
-import { siteConfig, services, audiences, advantages, processSteps, trustStats, footerLinks } from "@/data/site";
+import { siteConfig, navLinks, services, audiences, advantages, processSteps, footerLinks, serviceGroups } from "@/data/site";
 
 export const metadata = {
   title: `${siteConfig.name} | ${siteConfig.tagline}`,
@@ -27,9 +27,6 @@ export default function Home() {
         {/* Soft tinted shape instead of blurred glow */}
         <div className="hero-tinted-shape" />
         
-        {/* Optional faint dotted grid */}
-        <div className="hero-dotted-grid" />
-
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center">
             <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight mb-6 text-ink">
@@ -75,7 +72,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Services Grid - White Surface */}
+      {/* Services Grid - Grouped by Category */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-bg">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
@@ -87,27 +84,25 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {services.map((category, catIndex) => (
-              <div key={catIndex} className="lg:col-span-1">
-                <h3 className="text-xl font-bold mb-4 text-accent">{category.category}</h3>
-                <div className="space-y-4">
-                  {category.items.map((service, svcIndex) => (
-                    <Link
-                      key={svcIndex}
-                      href={`/services/${service.id}`}
-                      className="card-light block p-4"
-                    >
-                      <h4 className="font-semibold mb-2 text-ink group-hover:text-accent transition-colors">
-                        {service.title}
-                      </h4>
-                      <p className="text-sm text-muted">{service.desc}</p>
-                    </Link>
-                  ))}
-                </div>
+          {Object.entries(serviceGroups).map(([group, groupServices]) => (
+            <div key={group} className="mb-16">
+              <h3 className="text-2xl font-bold mb-8 text-accent">{group}</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {groupServices.map((service) => (
+                  <Link
+                    key={service.slug}
+                    href={`/services/${service.slug}`}
+                    className="card-light block p-6 group hover:border-accent transition-all duration-300"
+                  >
+                    <h4 className="font-semibold text-ink group-hover:text-accent transition-colors mb-2">
+                      {service.title}
+                    </h4>
+                    <p className="text-sm text-muted">{service.shortDescription}</p>
+                  </Link>
+                ))}
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -216,7 +211,12 @@ export default function Home() {
       <section className="py-16 px-4 sm:px-6 lg:px-8 border-y border-border bg-surface">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            {trustStats.map((stat, index) => (
+            {[
+              { label: "Projects Launched", value: "50+" },
+              { label: "Clients Served", value: "100+" },
+              { label: "Revenue Generated", value: "$10M+" },
+              { label: "Team Members", value: "25+" },
+            ].map((stat, index) => (
               <div key={index}>
                 <div className="text-3xl sm:text-4xl font-bold hero-gradient-text mb-2">
                   {stat.value}
@@ -245,52 +245,6 @@ export default function Home() {
           </Link>
         </div>
       </section>
-
-      {/* Footer - Dark Section Band */}
-      <footer className="py-12 px-4 sm:px-6 lg:px-8 dark-section border-t border-white/10">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
-            <div className="lg:col-span-2">
-              <h3 className="text-2xl font-bold mb-4 hero-gradient-text">
-                {siteConfig.name}
-              </h3>
-              <p className="text-white/80 max-w-md">
-                We build what moves business forward. From idea to execution, we help entrepreneurs and businesses build, automate, launch, and grow.
-              </p>
-            </div>
-            
-            <div>
-              <h4 className="font-bold mb-4 text-white">Services</h4>
-              <ul className="space-y-2">
-                {footerLinks.services.map((link) => (
-                  <li key={link.href}>
-                    <Link href={link.href} className="text-white/80 hover:text-white transition-colors">
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            
-            <div>
-              <h4 className="font-bold mb-4 text-white">Company</h4>
-              <ul className="space-y-2">
-                {footerLinks.company.map((link) => (
-                  <li key={link.href}>
-                    <Link href={link.href} className="text-white/80 hover:text-white transition-colors">
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-          
-          <div className="border-t border-white/10 pt-8 text-center text-white/60 text-sm">
-            <p>&copy; {new Date().getFullYear()} {siteConfig.name}. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
     </main>
   );
 }

@@ -5,7 +5,7 @@ import Button from "@/components/Button";
 import FAQ from "@/components/FAQ";
 import { services, siteConfig } from "@/data/site";
 
-// Service data with full details
+// Service data with full details - mapped from services array
 const serviceDetails: Record<string, {
   title: string;
   description: string;
@@ -15,113 +15,58 @@ const serviceDetails: Record<string, {
   processSteps: string[];
   faqs: { question: string; answer: string }[];
   relatedServices: string[];
-}> = {
-  "website-development": {
-    title: "Website Development",
-    description: "Modern, responsive websites that convert visitors into customers",
-    promise: "We build fast, secure, and conversion-optimized websites that represent your brand perfectly.",
-    deliverables: [
-      "Business websites",
-      "Landing pages",
-      "Web applications",
-      "Booking platforms",
-      "Customer portals",
-      "API integrations",
-      "Database-driven apps",
-      "Redesigns",
-      "Maintenance and support"
-    ],
-    whoItIsFor: [
-      "Startups needing a professional online presence",
-      "Small businesses going digital",
-      "Enterprises requiring custom web applications",
-      "Brands needing website redesigns"
-    ],
-    processSteps: [
-      "Discovery & requirements gathering",
-      "Wireframing & prototyping",
-      "Design & development",
-      "Testing & launch"
-    ],
-    faqs: [
-      {
-        question: "How long does a typical website project take?",
-        answer: "Most websites take 4-8 weeks depending on complexity. Simple sites can be done in 2-3 weeks, while complex web applications may take 12+ weeks."
-      },
-      {
-        question: "Will I be able to update the website myself?",
-        answer: "Yes! We implement user-friendly CMS solutions that make it easy for you to update content without technical knowledge."
-      },
-      {
-        question: "Do you offer ongoing maintenance?",
-        answer: "Absolutely. We provide ongoing maintenance packages including security updates, backups, performance monitoring, and content updates."
-      }
-    ],
-    relatedServices: ["shopify-ecommerce", "branding", "digital-marketing"]
-  },
-  "shopify-ecommerce": {
-    title: "Shopify & E-Commerce",
-    description: "Turn your products into a digital storefront that drives sales",
-    promise: "We build high-converting Shopify stores optimized for sales, user experience, and seamless operations.",
-    deliverables: [
-      "Store setup and customization",
-      "Product setup",
-      "Payment and app integration",
-      "Conversion and product page optimization",
-      "E-commerce strategy",
-      "Marketing integration"
-    ],
-    whoItIsFor: [
-      "Brands launching their first online store",
-      "Existing retailers migrating to Shopify",
-      "DTC brands scaling their e-commerce",
-      "Businesses needing store optimization"
-    ],
-    processSteps: [
-      "Strategy & planning",
-      "Store design & development",
-      "Product migration & optimization",
-      "Testing & launch"
-    ],
-    faqs: [
-      {
-        question: "Can you migrate my existing store to Shopify?",
-        answer: "Yes! We specialize in seamless migrations from other platforms with zero downtime and preserved SEO rankings."
-      },
-      {
-        question: "Do you handle product photography?",
-        answer: "We coordinate professional product photography as part of our setup process to ensure your products look their best."
-      }
-    ],
-    relatedServices: ["website-development", "digital-advertising", "branding"]
-  },
-  // Add remaining services similarly...
-};
+}> = {};
+
+// Build the serviceDetails object from services array
+services.forEach(service => {
+  serviceDetails[service.slug] = {
+    title: service.title,
+    description: service.shortDescription,
+    promise: service.longDescription,
+    deliverables: service.deliverables,
+    whoItIsFor: service.whoItIsFor,
+    processSteps: service.processSteps,
+    faqs: service.faqs,
+    relatedServices: [] // Will be populated based on group
+  };
+});
+
+// Set related services based on group
+services.forEach(service => {
+  const related = services
+    .filter(s => s.group === service.group && s.slug !== service.slug)
+    .slice(0, 3)
+    .map(s => s.slug);
+  
+  if (serviceDetails[service.slug]) {
+    serviceDetails[service.slug].relatedServices = related;
+  }
+});
 
 export function generateStaticParams() {
-  return services.flatMap(category => 
-    category.items.map(service => ({
-      slug: service.slug
-    }))
-  );
+  return services.map(service => ({
+    slug: service.slug
+  }));
 }
 
 export function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = params;
-  const service = serviceDetails[slug];
-  
-  if (!service) {
-    return {};
-  }
-  
-  return {
-    title: `${service.title} | LAVIEN VENTURES`,
-    description: service.description,
-    openGraph: {
+  return async () => {
+    const { slug } = await params;
+    const service = serviceDetails[slug];
+    
+    if (!service) {
+      return {};
+    }
+    
+    return {
       title: `${service.title} | LAVIEN VENTURES`,
       description: service.description,
-      type: "website",
-    },
+      openGraph: {
+        title: `${service.title} | LAVIEN VENTURES`,
+        description: service.description,
+        type: "website",
+      },
+    };
   };
 }
 
@@ -227,7 +172,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {service.relatedServices.map((relatedSlug) => {
-              const relatedService = services.flatMap(cat => cat.items).find(s => s.slug === relatedSlug);
+              const relatedService = services.find(s => s.slug === relatedSlug);
               if (!relatedService) return null;
               
               return (
